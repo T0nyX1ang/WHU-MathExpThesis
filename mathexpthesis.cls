@@ -66,7 +66,6 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{cprotect}
 % 设置代码环境
 \RequirePackage{listings}
-\RequirePackage{xcolor}
 % 摘要页的缩进
 \RequirePackage{changepage}
 
@@ -105,7 +104,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{calc}
 
 % 超链接 hyperref 的设置
-%\RequirePackage{hyperref}
+\RequirePackage{hyperref}
 %% Document Layout
 % 页面布局
 \geometry{top=25mm,bottom=25mm,left=25mm,right=25mm}
@@ -216,20 +215,21 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 }
 
 % 超链接
-  % \hypersetup{%
-        % xetex,
-    % % unicode=false, % hyperref 和 xetex 同时使用时不能开启 Unicode 选项.
-        % pdfstartview=FitH,
-        % CJKbookmarks=true,
-        % bookmarksnumbered=true,
-        % bookmarksopen=true,
-        % colorlinks, %注释掉此项则交叉引用为彩色边框(将colorlinks和pdfborder同时注释掉)
-        % pdfborder=001,   %注释掉此项则交叉引用为彩色边框
-    % allcolors=blue,
-    % breaklinks=true}%
-% \if@mcm@bwprint
-% \AtBeginDocument{\hypersetup{hidelinks}}
-% \else\relax\fi
+\hypersetup{
+  %xetex,
+  unicode=true,
+  pdfstartview=FitH,
+  CJKbookmarks=true,
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  colorlinks, %注释掉此项则交叉引用为彩色边框(将colorlinks和pdfborder同时注释掉)
+  pdfborder=001,   %注释掉此项则交叉引用为彩色边框
+  allcolors=blue,
+  breaklinks=true
+}
+\if@mcm@bwprint
+  \AtBeginDocument{\hypersetup{hidelinks}}
+\else\relax\fi
 
 \lstnewenvironment{tcode}
   {
@@ -486,7 +486,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\mcm@cap@appendixname}{附录}
 \newcommand*{\mcm@cap@abstractname}{摘 \quad 要}
  %%%  中文关键字
-\newcommand*{\mcm@cap@keywordsname}{关键字}
+\newcommand*{\mcm@cap@keywordsname}{关键词}
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
 %设置目录格式
 % 节的目录格式
