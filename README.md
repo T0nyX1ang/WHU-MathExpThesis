@@ -31,7 +31,7 @@ Six parameters are provided here:
 
 Make sure to declare them before you start your document.
 
-## Compliation:
+## Compilation:
 Use **xelatex** only. Select the right compile option in your LaTeX editor or use command line:
 ```
 xelatex your-filename.tex
@@ -54,5 +54,8 @@ The project maintainer is 'Tony Xiang'.
 * latexstudio/gmcmthesis
 * Logo from Wuhan University
 
-## Contacts:
+# Example:
+See test.pdf(output), test.tex(source code) for details.
+
+# Contacts:
 Forking or pulling requests of this project is strongly welcomed.
