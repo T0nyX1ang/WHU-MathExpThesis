@@ -30,6 +30,7 @@
     \item \textbf{bwprint/colorprint} 控制打印时的颜色与超链接的边框.
     \item \textbf{withoutpreface} 控制扉页的输出.
     \item \textbf{withouttitlepage} 控制标题页的输出，最好将摘要放在此页.
+    \item \textbf{openbookmarknumber} 开启PDF书签的编号，注意此方法会导致编译警告.
 \end{itemize}
 
 \subsection{模板参数}
@@ -244,7 +245,7 @@
 由于模板集成了\href{https://github.com/latexstudio/GMCMthesis}{latexstudio/GMCMthesis\upcite{bib:author-1}}与\href{https://github.com/latexstudio/CUMCMthesis}{latexstudio/CUMCMthesis\upcite{bib:author-2}}的文档模板，该部分的版权为版权所属人所有，此模板属于Derived Work（这是鸣谢）.
 
 \subsection{已知问题}
-Package hyperref Warning: Token not allowed in a PDF string (Unicode).
+Package hyperref Warning: Token not allowed in a PDF string (Unicode). 这个问题不会影响编译，原因是hyperref处理编号时使用了\LaTeX 语法，这些语法不能被PDF接受.最后结果中的书签仍然会正常生成. 目前这个问题通过添加一个额外选项的方法解决.
 
 \subsection{其它}
 以下是示例的参考文献内容和示例的附录.如需使用网址，url宏包可能会更好看一点.有时url可能会导致强制换行的问题，此时可以人工换行.
@@ -261,6 +262,8 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode).
 2019/2/25 初次更新
 
 2019/2/26 修复了hyperref链接错误的问题
+
+2019/2/26 调整了一部分代码的顺序，提高可读性
 
 \section{一些matlab测试代码}
 \subsection{单纯形法-Core}

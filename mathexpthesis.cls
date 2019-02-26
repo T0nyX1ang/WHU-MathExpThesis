@@ -5,6 +5,7 @@
 \newif\if@mcm@bwprint\@mcm@bwprintfalse
 \newif\if@mcm@preface\@mcm@prefacetrue
 \newif\if@mcm@titlepage\@mcm@titlepagetrue
+\newif\if@mcm@bookmarknumber\@mcm@bookmarknumberfalse
 
 % tokens definition
 \newcommand\mcm@tokens@keywords{}
@@ -17,6 +18,7 @@
 %% Declaration of Options
 \DeclareOption{colorprint}{\@mcm@bwprintfalse}
 \DeclareOption{bwprint}{\@mcm@bwprinttrue}
+\DeclareOption{openbookmarknumber}{\@mcm@bookmarknumbertrue}
 \DeclareOption{withoutpreface}{\@mcm@prefacefalse}
 \DeclareOption{withouttitlepage}{\@mcm@titlepagefalse}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -67,30 +69,6 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{changepage}
 % 附录定制
 \RequirePackage{appendix}
-
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-
-\lstset{
-  frame=tb,
-  aboveskip=3mm,
-  belowskip=3mm,
-  showstringspaces=false,
-  columns=flexible,
-  framerule=1pt,
-  rulecolor=\color{gray!35},
-  backgroundcolor=\color{gray!5},
-  basicstyle={\small\ttfamily},
-  numbers=none,
-  numberstyle=\tiny\color{gray},
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
-  stringstyle=\color{mauve},
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=3,
-}
 % 首行缩进
 \RequirePackage{indentfirst}
 % 设置浮动体的标题
@@ -215,20 +193,49 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 超链接
 \hypersetup{
-  xetex,
+  %xetex,
   unicode=true,
   pdfstartview=FitH,
   CJKbookmarks=true,
-  bookmarksnumbered=true,
+  bookmarksnumbered=false,
   bookmarksopen=true,
   colorlinks, %注释掉此项则交叉引用为彩色边框(将colorlinks和pdfborder同时注释掉)
   pdfborder=001,   %注释掉此项则交叉引用为彩色边框
   allcolors=blue,
   breaklinks=true
 }
+\if@mcm@bookmarknumber
+  \hypersetup{bookmarksnumbered}
+\else\relax\fi
+
 \if@mcm@bwprint
   \AtBeginDocument{\hypersetup{hidelinks}}
 \else\relax\fi
+
+% 代码环境
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  frame=tb,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  framerule=1pt,
+  rulecolor=\color{gray!35},
+  backgroundcolor=\color{gray!5},
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+}
 
 \lstnewenvironment{tcode}
   {
@@ -356,8 +363,6 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
    {-1em}%
    {\normalfont\normalsize\bfseries}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Define new environment and command
 %% 摘要两个字设置为 4 号.
 %% 定义摘要环境
 \renewenvironment{abstract}{%
@@ -384,7 +389,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \par
   \vskip1ex
   {\noindent\zihao{-4}\heiti\mcm@cap@keywordsname：}~{\mcm@tokens@keywords}
-  }
+}
 
 % 定义附录，重定义计数器
 \renewenvironment{appendices}{\par
@@ -419,24 +424,26 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 重定义参考文献环境
 \renewenvironment{thebibliography}[1]
-     {\section*{\refname}%
-      \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
+{
+  \addcontentsline{toc}{section}{\mcm@cap@refname}
+  \section*{\refname}%
+  \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+  \list{\@biblabel{\@arabic\c@enumiv}}%
+        {\settowidth\labelwidth{\@biblabel{#1}}%
+        \leftmargin\labelwidth
+        \advance\leftmargin\labelsep
+        \@openbib@code
+        \usecounter{enumiv}%
+        \let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+        \sloppy
+        \clubpenalty4000
+        \@clubpenalty \clubpenalty
+        \widowpenalty4000%
+        \sfcode`\.\@m}
+       {\def\@noitemerr
        {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist
+  \endlist
 } 
 
 \newcommand*\groupno[1]{%
