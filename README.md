@@ -43,6 +43,15 @@ xelatex your-filename.tex
 ## Person number limitation:
 As this template is dedicated for our project, only groups with exactly **four** persons are able to use it. To change this limitation, please change the **\memberx** declarations and make room for more(or less) person's names.
 
+## Troubleshooting:
+* LaTeX Package *hyperref* is somewhat incompatible with section numbers in this template. So if you turn *openbookmarknumber* on in your own document, there will be warnings. You can choose to ignore them.
+* Normal appendix environment (\appendix) isn't supported in this template. That's why we use the *appendix* package, and you should create your appendices like this:
+```latex
+\begin{appendices}
+Your appendices.
+\end{appendices}
+```
+
 ## Project licenses:
 This project uses LaTeX Project Public License, v1.3c or later.
 
