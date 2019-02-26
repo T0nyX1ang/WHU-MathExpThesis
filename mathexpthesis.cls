@@ -13,9 +13,6 @@
 \newcommand*\mcm@tokens@memberb{}
 \newcommand*\mcm@tokens@memberc{}
 \newcommand*\mcm@tokens@memberd{}
-\newcommand*\mcm@tokens@yearinput{}
-\newcommand*\mcm@tokens@monthinput{}
-\newcommand*\mcm@tokens@dayinput{}
 
 %% Declaration of Options
 \DeclareOption{colorprint}{\@mcm@bwprintfalse}
@@ -68,6 +65,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{listings}
 % 摘要页的缩进
 \RequirePackage{changepage}
+% 附录定制
+\RequirePackage{appendix}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -186,7 +185,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 如果图片没有指定后缀, 依次按下列顺序搜索
 \DeclareGraphicsExtensions{.pdf,.eps,.jpg,.png}
 % 设置图表搜索路径, 可以给图表文件夹取如下名字
-\graphicspath{{figures/}{figure/}{pictures/}{picture/}{pic/}{pics/}{image/}{images/}}
+\graphicspath{{./}{./figures/}{./figure/}{./pictures/}{./picture/}{./pic/}{./pics/}{./image/}{./images/}}
 % 图表标题
 \DeclareCaptionFont{song}{\songti}
 \DeclareCaptionFont{minusfour}{\zihao{-4}}
@@ -216,7 +215,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 % 超链接
 \hypersetup{
-  %xetex,
+  xetex,
   unicode=true,
   pdfstartview=FitH,
   CJKbookmarks=true,
@@ -331,9 +330,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 % 中文标题格式设置
 % 目录深度
 \setcounter{secnumdepth}{3}
-% 节标题格式, 居中, 使用\chinese命令修改计数器
 \def\@seccntformat#1{\csname the#1\endcsname\ }
-%\renewcommand\thesection{\chinese{section}、}
 \renewcommand\thesection{\arabic{section}\space}
 \renewcommand\thesubsection{\arabic{section}.\thinspace\arabic{subsection}\space}
 \renewcommand\thesubsubsection{\arabic{section}.\thinspace\arabic{subsection}.\thinspace\arabic{subsubsection}\space}
@@ -390,14 +387,15 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   }
 
 % 定义附录，重定义计数器
-\renewcommand\appendix{\par
-\renewcommand\thesection{\Alph{section}\space}
+\renewenvironment{appendices}{\par
+\@resets@pp
+\gdef\thesection{\@Alph\c@section}
+\gdef\thesubsection{\@Alph\c@subsection}
+\renewcommand\thesection{\mcm@cap@appendixname\space\Alph{section}\space}
 \renewcommand\thesubsection{\Alph{section}.\thinspace\arabic{subsection}\space}
-\renewcommand\thesubsubsection{\Alph{section}.\thinspace\arabic{subsection}.\thinspace\arabic{subsubsection}\space}
 \renewcommand\section{\@startsection{section}{1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}%
   {2.3ex \@plus.2ex}%
-  %{\centering\normalfont\Large\bfseries}}
   {\normalfont\Large\bfseries}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
   {-3.25ex\@plus -1ex \@minus -.2ex}%
@@ -415,9 +413,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   {3.25ex \@plus1ex \@minus .2ex}%
   {-1em}%
   {\normalfont\normalsize\bfseries}}
-\setcounter{section}{0}%
-\setcounter{subsection}{0}%
-\gdef\thesection{\appendixname\@Alph\c@section}%
+  \setcounter{section}{0}%
+  \setcounter{subsection}{0}%
 }    
 
 % 重定义参考文献环境
@@ -439,7 +436,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
       \sfcode`\.\@m}
      {\def\@noitemerr
        {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist} 
+      \endlist
+} 
 
 \newcommand*\groupno[1]{%
   \renewcommand{\mcm@tokens@groupno}{#1}}
@@ -451,12 +449,6 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \renewcommand{\mcm@tokens@memberc}{#1}}
 \newcommand*\memberd[1]{%
   \renewcommand{\mcm@tokens@memberd}{#1}}
-\newcommand*\yearinput[1]{%
-  \renewcommand{\mcm@tokens@yearinput}{#1}}
-\newcommand*\monthinput[1]{%
-  \renewcommand{\mcm@tokens@monthinput}{#1}}
-\newcommand*\dayinput[1]{%
-  \renewcommand{\mcm@tokens@dayinput}{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -490,6 +482,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
 %设置目录格式
+
 % 节的目录格式
 \titlecontents{section}[0pt]{\vspace{2mm}\bfseries\heiti}
 {\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
@@ -501,4 +494,5 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 {\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
 
 \pagestyle{plain}
+
 \endinput

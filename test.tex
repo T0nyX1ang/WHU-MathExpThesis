@@ -17,6 +17,7 @@
 \begin{document}
 \maketitle
 \tableofcontents
+\newpage
 \section{模板说明}
 \subsection{引入模板}
 使用如下\LaTeX 代码：
@@ -26,7 +27,7 @@
 
 拥有几个可选项：
 \begin{itemize}[itemindent=2em]
-    \item \textbf{bwprint/colorprint} 控制打印时的颜色.
+    \item \textbf{bwprint/colorprint} 控制打印时的颜色与超链接的边框.
     \item \textbf{withoutpreface} 控制扉页的输出.
     \item \textbf{withouttitlepage} 控制标题页的输出，最好将摘要放在此页.
 \end{itemize}
@@ -45,10 +46,10 @@
 \subsection{摘要与关键字}
 使用方式：
 \begin{minted}[breaklines, breakanywhere]{latex}
-\begin{abstract}
-    Abstract here.
-    \keywords{\LaTeX, typesetting}
-\end{abstract}
+    \begin{abstract}
+        Abstract here.
+        \keywords{\LaTeX, typesetting}
+    \end{abstract}
 \end{minted}
 
 \subsection{节标题}
@@ -115,7 +116,7 @@
 
 图片支持的目录：
 \begin{minted}[breaklines, breakanywhere]{latex}
-    {figures/}, {figure/}, {pictures/}, {picture/}, {pic/}, {pics/}, {image/}, {images/}
+    {./}, {figures/}, {figure/}, {pictures/}, {picture/}, {pic/}, {pics/}, {image/}, {images/}
 \end{minted}
 
 插入图片的方式：
@@ -205,7 +206,10 @@
 \subsection{附录}
 使用：
 \begin{minted}[breaklines, breakanywhere]{latex}
-    \appendix
+    \begin{appendices}
+        \section{...}
+        \subsection{...}
+    \end{appendices}
 \end{minted}
 
 即可创建附录.
@@ -216,6 +220,8 @@
 \end{minted}
 
 从代码生成的角度上，minted的效果优于lstlistings.
+
+\textbf{注意：目前附录仅支持最多两层，否则目录与编号会出错.}
 
 \section{其它注意事项}
 \subsection{符号的使用}
@@ -235,7 +241,10 @@
 
 此文档中除去示例代码的内容，协议为LPPL（即不要未经许可使用我的matlab代码和tikz代码）.
 
-由于模板集成了\href{https://github.com/latexstudio/GMCMthesis}{latexstudio/GMCMThesis\upcite{bib:author-1}}与\href{https://github.com/latexstudio/CUMCMthesis}{latexstudio/CUMCMThesis\upcite{bib:author-2}}的文档模板，该部分的版权为版权所属人所有，此模板属于Derived Work（这是鸣谢）.
+由于模板集成了\href{https://github.com/latexstudio/GMCMthesis}{latexstudio/GMCMthesis\upcite{bib:author-1}}与\href{https://github.com/latexstudio/CUMCMthesis}{latexstudio/CUMCMthesis\upcite{bib:author-2}}的文档模板，该部分的版权为版权所属人所有，此模板属于Derived Work（这是鸣谢）.
+
+\subsection{已知问题}
+Package hyperref Warning: Token not allowed in a PDF string (Unicode).
 
 \subsection{其它}
 以下是示例的参考文献内容和示例的附录.如需使用网址，url宏包可能会更好看一点.有时url可能会导致强制换行的问题，此时可以人工换行.
@@ -247,7 +256,12 @@
     \bibitem{bib:author-2} \url{https://github.com/latexstudio/CUMCMthesis}
 \end{thebibliography}
 
-\appendix
+\begin{appendices}
+\section{更新记录}
+2019/2/25 初次更新
+
+2019/2/26 修复了hyperref链接错误的问题
+
 \section{一些matlab测试代码}
 \subsection{单纯形法-Core}
 \begin{minted}[breaklines, breakanywhere]{matlab}
@@ -526,5 +540,6 @@ function [xval, fval] = SimplexSolver(c, A, b, Aeq, beq, lb, ub, epsilon)
 end
     
 \end{minted}
+\end{appendices}
 
 \end{document}
