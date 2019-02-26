@@ -56,7 +56,9 @@ The project maintainer is 'Tony Xiang'.
 * Logo from Wuhan University
 
 # Example:
-See [test.pdf](output), [test.tex](source code) for details.
+See [test.pdf](https://github.com/T0nyX1ang/WHU-MathExpThesis/blob/master/test.pdf)(output), [test.tex](https://github.com/T0nyX1ang/WHU-MathExpThesis/blob/master/test.tex)(source code) for details.
+
+Usage of MatLab or TikZ codes in test.tex is not permitted unless you contact me in advance.
 
 # Contacts:
 Forking or pulling requests of this project is strongly welcomed.
