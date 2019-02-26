@@ -14,6 +14,7 @@ Three printing options are provided here:
 * bwprint/colorprint
 * withoutpreface
 * withouttitlepage
+* openbookmarknumber
 
 Here is the usage with options:
 ```latex
@@ -50,12 +51,14 @@ The maintaining status of this project is 'maintained'.
 The project maintainer is 'Tony Xiang'.
 
 ## Acknowledgements:
-* latexstudio/CUMCMThesis
-* latexstudio/gmcmthesis
+* [latexstudio/CUMCMThesis](https://github.com/latexstudio/CUMCMthesis)
+* [latexstudio/gmcmthesis](https://github.com/latexstudio/GMCMthesis)
 * Logo from Wuhan University
 
 # Example:
-See test.pdf(output), test.tex(source code) for details.
+See [test.pdf](output), [test.tex](source code) for details.
 
 # Contacts:
 Forking or pulling requests of this project is strongly welcomed.
+
+You can contact me on Github.
