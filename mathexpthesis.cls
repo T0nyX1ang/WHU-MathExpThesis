@@ -277,7 +277,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \if@mcm@preface
   \newpage
   \null
-  %\setcounter{page}{0}
+  \setcounter{page}{0}
   %\def\thepage{0}
   \thispagestyle{empty}%
   \begin{center}
@@ -460,7 +460,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Initialization
- %%%数学定理相关的常量
+% 数学定理相关的常量
 \newcommand*{\mcm@cap@definition}{定义}
 \newcommand*{\mcm@cap@theorem}{定理}
 \newcommand*{\mcm@cap@lemma}{引理}
@@ -474,7 +474,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\mcm@cap@proof}{证明}
 \newcommand*{\mcm@cap@solution}{解}
 
- %%%  中文标题名称
+% 中文标题名称
 \newcommand*{\mcm@cap@contentsname}{\begin{center}目 \quad 录 \end{center}}
 \newcommand*{\mcm@cap@listfigurename}{插图清单}
 \newcommand*{\mcm@cap@listtablename}{附表清单}
@@ -484,12 +484,12 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\mcm@cap@tablename}{表}
 \newcommand*{\mcm@cap@appendixname}{附录}
 \newcommand*{\mcm@cap@abstractname}{摘 \quad 要}
- %%%  中文关键字
+% 中文关键字
 \newcommand*{\mcm@cap@keywordsname}{关键词}
+% 引用
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
 %设置目录格式
-
 % 节的目录格式
 \titlecontents{section}[0pt]{\vspace{2mm}\bfseries\heiti}
 {\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
