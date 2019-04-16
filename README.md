@@ -51,7 +51,10 @@ As this template is dedicated for our project, only groups with exactly **four**
 Your appendices.
 \end{appendices}
 ```
-* This package can only be executed on Windows or Overleaf because of font issues.
+* This package can be directly executed on Windows or Overleaf. If you are going to use it on Linux distributions, please install core fonts in Windows by this (Debian-style):
+```bash
+sudo apt-get install ttf-mscorefonts-installer
+```
 
 ## Project licenses:
 This project uses LaTeX Project Public License, v1.3c or later.
