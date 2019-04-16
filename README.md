@@ -51,6 +51,7 @@ As this template is dedicated for our project, only groups with exactly **four**
 Your appendices.
 \end{appendices}
 ```
+* This package can only be executed on Windows or Overleaf because of font issues.
 
 ## Project licenses:
 This project uses LaTeX Project Public License, v1.3c or later.
