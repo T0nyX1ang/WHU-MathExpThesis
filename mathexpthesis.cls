@@ -6,6 +6,7 @@
 \newif\if@mcm@preface\@mcm@prefacetrue
 \newif\if@mcm@titlepage\@mcm@titlepagetrue
 \newif\if@mcm@bookmarknumber\@mcm@bookmarknumberfalse
+\newif\if@mcm@openfonts\@mcm@openfontsfalse
 
 % tokens definition
 \newcommand\mcm@tokens@keywords{}
@@ -21,6 +22,8 @@
 \DeclareOption{openbookmarknumber}{\@mcm@bookmarknumbertrue}
 \DeclareOption{withoutpreface}{\@mcm@prefacefalse}
 \DeclareOption{withouttitlepage}{\@mcm@titlepagefalse}
+\DeclareOption{openfonts}{\@mcm@openfontstrue}
+
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 %% Executing of Options
 \ExecuteOptions{colorprint}
@@ -96,14 +99,26 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   {\mcm@endoldtabular\egroup}
 % 每行缩进两个汉字
 \setlength\parindent{2em}
-% 设置字体
-\setmainfont{Times New Roman}
-%\setmonofont{Courier New}
-\setsansfont{Arial}
-\setCJKfamilyfont{kai}[AutoFakeBold]{simkai.ttf}
-\newcommand*{\kai}{\CJKfamily{kai}}
-\setCJKfamilyfont{song}[AutoFakeBold]{SimSun}
-\newcommand*{\song}{\CJKfamily{song}}
+
+\if@mcm@openfonts
+	% 开源字体
+	\setCJKmainfont{SourceHanSerifCN-Regular}
+	\setCJKfamilyfont{song}{SourceHanSerifCN-Regular}
+	\setCJKfamilyfont{kai}{gkai00mp.ttf}
+	\newcommand*{\kai}{\CJKfamily{kai}}
+	\newcommand*{\song}{\CJKfamily{song}}
+	\setCJKfamilyfont{heiti}{SourceHanSansCN-Regular}
+	\renewcommand*{\heiti}{\CJKfamily{heiti}}
+\else
+	% 设置字体
+	\setmainfont{Times New Roman}
+	%\setmonofont{Courier New}
+	\setsansfont{Arial}
+	\setCJKfamilyfont{kai}[AutoFakeBold]{simkai.ttf}
+	\newcommand*{\kai}{\CJKfamily{kai}}
+	\setCJKfamilyfont{song}[AutoFakeBold]{SimSun}
+	\newcommand*{\song}{\CJKfamily{song}}
+\fi
 
 \renewcommand\normalsize{%
   \@setfontsize\normalsize{12.05}{14.45}%
