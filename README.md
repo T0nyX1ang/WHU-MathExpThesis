@@ -10,11 +10,12 @@ To include the document class into your LaTeX document, just type:
 ```
 
 ## Options:
-Three printing options are provided here:
+Five printing options are provided here:
 * bwprint/colorprint
 * withoutpreface
 * withouttitlepage
 * openbookmarknumber
+* openfonts
 
 Here is the usage with options:
 ```latex
@@ -51,10 +52,11 @@ As this template is dedicated for our project, only groups with exactly **four**
 Your appendices.
 \end{appendices}
 ```
-* This package can be directly executed on Windows or Overleaf. If you are going to use it on Linux distributions, please install core fonts in Windows by this (Debian-style):
+* This package can be directly executed on Windows or Overleaf. If you are going to use it on Linux distributions, please install core fonts in Windows by this (Debian-style, texlive with CJK is needed):
 ```bash
 sudo apt-get install ttf-mscorefonts-installer
 ```
+* The `openfonts` option can only be successfully executed when [SourceHanSerifCN](https://github.com/adobe-fonts/source-han-serif/blob/release/SubsetOTF/SourceHanSerifCN.zip) and [SourceHanSansCN](https://github.com/adobe-fonts/source-han-sans/blob/release/SubsetOTF/SourceHanSansCN.zip) are installed in your operation system.
 
 ## Project licenses:
 This project uses LaTeX Project Public License, v1.3c or later.
