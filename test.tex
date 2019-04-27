@@ -222,6 +222,16 @@
 
 从代码生成的角度上，minted的效果优于lstlistings.
 
+\subsubsection{附录中的定理环境}
+从V0.3.0版本开始，支持在附录中和在正文中显示不同的定理标号.
+
+如果附录中需要存放定理环境，需要在原定理环境的基础上增加ap前缀，如下所示：
+\begin{minted}[breaklines, breakanywhere]{latex}
+    \begin{aptheorem}
+        ...
+    \end{aptheorem}
+\end{minted}
+
 \textbf{注意：目前附录仅支持最多两层，否则目录与编号会出错.}
 
 \section{其它注意事项}
@@ -259,13 +269,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode). 这个问
 
 \begin{appendices}
 \section{更新记录}
-2019/2/25 初次更新
-
-2019/2/26 修复了hyperref链接错误的问题
-
-2019/2/26 调整了一部分代码的顺序，提高可读性
-
-2019/2/27 修改了一个页面编号的bug
+更新记录见CHANGELOG.md文件.（英文）
 
 \section{一些matlab测试代码}
 \subsection{单纯形法-Core}
