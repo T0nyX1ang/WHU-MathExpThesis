@@ -58,6 +58,18 @@ sudo apt-get install ttf-mscorefonts-installer
 ```
 * The `openfonts` option can only be successfully executed when [SourceHanSerifCN](https://github.com/adobe-fonts/source-han-serif/blob/release/SubsetOTF/SourceHanSerifCN.zip) and [SourceHanSansCN](https://github.com/adobe-fonts/source-han-sans/blob/release/SubsetOTF/SourceHanSansCN.zip) are installed in your operation system.
 
+## Different theorem environment name in the appendix:
+
+[From **Version 0.3.0 and after**.]
+
+In your main article, the theorem environment should work as before. But in the appendix, you need to **add an 'ap' suffix** to all of your theorem environment, such as:
+
+```latex
+\begin{aptheorem}[theorem in appendix]
+	...
+\end{aptheorem}
+```
+
 ## Project licenses:
 This project uses LaTeX Project Public License, v1.3c or later.
 
