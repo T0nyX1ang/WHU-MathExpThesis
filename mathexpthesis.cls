@@ -113,16 +113,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 {\bfseries}% name of head font
 { }% punctuation between head and body
 { }% space after theorem head; " " = normal interword space
-{\thmname{#1}\thmnumber{\arabic{section}.\thinspace\addtocounter{overall}{1}\arabic{overall}}\thmnote{ (#3)}}
+{\thmname{#1}\thmnumber{\arabic{section}.\thinspace\addtocounter{overall}{1}\arabic{overall}}\thmnote{ （#3）}}
 \theoremstyle{theoremdd}
-
-\renewenvironment{proof}[1][\proofname]{\par
-  \pushQED{\qed}%
-  \normalfont \topsep6\p@\@plus6\p@\relax
-  \trivlist
-  \item[\hskip\labelsep
-        \bfseries 证明：\space]\ignorespaces
-}{\popQED\endtrivlist\@endpefalse}
 
 \newtheorem{definition}{\mcm@cap@definition}
 \newtheorem{theorem}{\mcm@cap@theorem}
@@ -136,62 +128,83 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newtheorem{example}{\mcm@cap@example}
 \newtheorem*{solution}{\mcm@cap@solution}
 
-% 浮动环境设置
-% 默认情况下, \LaTeX{} 要求每页的文字至少占据 20%,否则该页就只单独放置一个浮动环境,
-% 而这通常不是我们想要的, 我们将这个要求降低到 5%.
+% Theorem style for appendix
+\newtheoremstyle{theoremapd}% name of the style to be used
+{ }% measure of space to leave above the theorem. E.g.: 3pt
+{ }% measure of space to leave below the theorem. E.g.: 3pt
+{ }% name of font to use in the body of the theorem
+{0pt}% measure of space to indent
+{\bfseries}% name of head font
+{ }% punctuation between head and body
+{ }% space after theorem head; " " = normal interword space
+{\thmname{#1}\thmnumber{\Alph{section}.\thinspace\addtocounter{overall}{1}\arabic{overall}}\thmnote{ （#3）}}
+\theoremstyle{theoremapd}
+
+\newtheorem{apdefinition}{\mcm@cap@definition}
+\newtheorem{aptheorem}{\mcm@cap@theorem}
+\newtheorem{aplemma}{\mcm@cap@lemma}
+\newtheorem{apcorollary}{\mcm@cap@corollary}
+\newtheorem{apassumption}{\mcm@cap@assumption}
+\newtheorem{apconjecture}{\mcm@cap@conjecture}
+\newtheorem{apaxiom}{\mcm@cap@axiom}
+\newtheorem{apprinciple}{\mcm@cap@principle}
+\newtheorem{approblem}{\mcm@cap@problem}
+\newtheorem{apexample}{\mcm@cap@example}
+\newtheorem*{apsolution}{\mcm@cap@solution}
+
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep
+        \bfseries 证明：\space]\ignorespaces
+}{\popQED\endtrivlist\@endpefalse}
+
+% Float settings
 \renewcommand*{\textfraction}{0.05}
-% 有时如果多个浮动环境连续放在一起, \LaTeX{}
-% 会将它们分在几个不同页，即使它们可在同一页放
-% 得下. 我们可以通过修改 |\topfraction| 和 |\bottomfraction| 分别设置顶端和底端的浮
-% 动环境的最大比例.
 \renewcommand*{\topfraction}{0.9}
 \renewcommand*{\bottomfraction}{0.8}
-% 有时\LaTeX{}会把一个浮动环境单独放在一页,
-% 我们要求这个环境至少要占据 85% 才能单独放在一页.
-% 注意:  |\floatpagefraction| 的数值必须小于 |\topfraction|.
 \renewcommand*{\floatpagefraction}{0.85}
-% 关于图片 graphicx
-% 如果图片没有指定后缀, 依次按下列顺序搜索
+
+% Picture settings
 \DeclareGraphicsExtensions{.pdf,.eps,.jpg,.png}
-% 设置图表搜索路径, 可以给图表文件夹取如下名字
 \graphicspath{{./}{./figures/}{./figure/}{./pictures/}{./picture/}{./pic/}{./pics/}{./image/}{./images/}}
-% 图表标题
 \DeclareCaptionFont{song}{\songti}
 \DeclareCaptionFont{minusfour}{\zihao{-4}}
 \captionsetup[figure]{%
-  format=hang,   % 标题从第二行开始都有缩进, 应该和 justification=raggedright 的效果一样.
-  labelsep=quad, % 分隔符是一个空格
-  font={song,minusfour,bf}, % 图的字体, 宋体小四
-  position=bottom % position=bottom, 不代表标题放在下面, 标题仍放在你放\caption的位置.
+  format=hang,
+  labelsep=quad,
+  font={song,minusfour,bf},
+  position=bottom
 }
 \captionsetup[table]{%
-  format=hang,   % 标题从第二行开始都有缩进, 应该和 justification=raggedright 的效果一样.
-  labelsep=quad, % 分隔符是一个空格
-  font={song,minusfour,bf}, % 表的字体, 宋体小四
-  position=top % position=bottom, 不代表标题放在下面, 标题仍放在你放\caption的位置.
-}
-% 列表环境设置
-\setlist{%
-  topsep=0.3em, % 列表顶端的垂直空白
-  partopsep=0pt, % 列表环境前面紧接着一个空白行时其顶端的额外垂直空白
-  itemsep=0ex plus 0.1ex, % 列表项之间的额外垂直空白
-  parsep=0pt, % 列表项内的段落之间的垂直空白
-  leftmargin=1.5em, % 环境的左边界和列表之间的水平距离
-  rightmargin=0em, % 环境的右边界和列表之间的水平距离
-  labelsep=0.5em, % 包含标签的盒子与列表项的第一行文本之间的间隔
-  labelwidth=2em % 包含标签的盒子的正常宽度；若实际宽度更宽，则使用实际宽度。
+  format=hang,
+  labelsep=quad,
+  font={song,minusfour,bf},
+  position=top
 }
 
-% 超链接
+% List settings
+\setlist{%
+  topsep=0.3em,
+  partopsep=0pt,
+  itemsep=0ex plus 0.1ex,
+  parsep=0pt,
+  leftmargin=1.5em,
+  rightmargin=0em,
+  labelsep=0.5em,
+  labelwidth=2em
+}
+
+% Hyperref
 \hypersetup{
-  %xetex,
   unicode=true,
   pdfstartview=FitH,
   CJKbookmarks=true,
   bookmarksnumbered=false,
   bookmarksopen=true,
-  colorlinks, %注释掉此项则交叉引用为彩色边框(将colorlinks和pdfborder同时注释掉)
-  pdfborder=001,   %注释掉此项则交叉引用为彩色边框
+  colorlinks,
+  pdfborder=001,
   allcolors=blue,
   breaklinks=true
 }
