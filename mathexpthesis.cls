@@ -37,59 +37,37 @@
 \ClassError{mcmthesis}{You must use the `xelatex' driver\MessageBreak Please choose `xelatex'}{%
 Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \fi
-% 支持中文的 ctex 宏包
+
 \RequirePackage{ctex}
-% 页面布局
 \RequirePackage{geometry}
-% 数学宏包
 \RequirePackage{amsthm}
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{bm}
 \RequirePackage{titletoc}
-% 设置颜色
 \RequirePackage{xcolor}
-% 插入图片
 \RequirePackage{graphicx}
-% 表格
 \RequirePackage{array, tabularx}
-%% 长表格
 \RequirePackage{longtable}
-%% booktabs 提供了\toprule 等命令.
 \RequirePackage{booktabs}
-%% multirow 支持在表格中跨行
 \RequirePackage{multirow}
-%% 调整间隔, 让表格更好看些
 \RequirePackage{bigstrut}
-%% 在跨行表格中输入定界符
 \RequirePackage{bigdelim}
-% 保护脆落命令
 \RequirePackage{cprotect}
-% 设置代码环境
 \RequirePackage{listings}
-% 摘要页的缩进
 \RequirePackage{changepage}
-% 附录定制
 \RequirePackage{appendix}
-% 首行缩进
 \RequirePackage{indentfirst}
-% 设置浮动体的标题
 \RequirePackage{caption}
-% 定制列表环境
 \RequirePackage{enumitem}
-% 下划线
 \RequirePackage{ulem}
-% 尺寸计算
 \RequirePackage{calc}
-
-% 超链接 hyperref 的设置
 \RequirePackage{hyperref}
-%% Document Layout
-% 页面布局
+
+% Document Layout
 \geometry{top=25mm,bottom=25mm,left=25mm,right=25mm}
 \renewcommand*{\baselinestretch}{1.38}
-% 修改tabular 环境, 设置表格中的行间距为正文行间距.
 \let\mcm@oldtabular\tabular
 \let\mcm@endoldtabular\endtabular
 \renewenvironment{tabular}%
@@ -97,11 +75,10 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \renewcommand{\arraystretch}{1.38}%
   \mcm@oldtabular}%
   {\mcm@endoldtabular\egroup}
-% 每行缩进两个汉字
 \setlength\parindent{2em}
 
 \if@mcm@openfonts
-	% 开源字体
+	% open source fonts
 	\setCJKmainfont{SourceHanSerifCN-Regular}
 	\setCJKfamilyfont{song}{SourceHanSerifCN-Regular}
 	\setCJKfamilyfont{kai}{gkai00mp.ttf}
@@ -110,9 +87,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 	\setCJKfamilyfont{heiti}{SourceHanSansCN-Regular}
 	\renewcommand*{\heiti}{\CJKfamily{heiti}}
 \else
-	% 设置字体
+	% built-in fonts
 	\setmainfont{Times New Roman}
-	%\setmonofont{Courier New}
 	\setsansfont{Arial}
 	\setCJKfamilyfont{kai}[AutoFakeBold]{simkai.ttf}
 	\newcommand*{\kai}{\CJKfamily{kai}}
@@ -126,7 +102,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \abovedisplayshortskip \z@ \@plus3\p@
   \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@}
 
-% 数学环境, 定理等设置
+% Theorem style for article
 \newcounter{overall}[section]
 \setcounter{overall}{1}
 \newtheoremstyle{theoremdd}% name of the style to be used
@@ -227,7 +203,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \AtBeginDocument{\hypersetup{hidelinks}}
 \else\relax\fi
 
-% 代码环境
+% Code settings
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
@@ -266,10 +242,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   }
   {}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% Document Markup
-% 生成封面, 使用\maketitle
+% Document Markup
 \renewcommand{\maketitle}{\par
   \begingroup
       \newpage
@@ -338,7 +311,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newpage
 }
 
-% 中文标题名称设置
+% Chinese format for float env
 \renewcommand\contentsname{\mcm@cap@contentsname}
 \renewcommand\listfigurename{\mcm@cap@listfigurename}
 \renewcommand\listtablename{\mcm@cap@listtablename}
@@ -349,8 +322,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \renewcommand\appendixname{\mcm@cap@appendixname}
 \renewcommand\abstractname{\mcm@cap@abstractname}
 
-% 中文标题格式设置
-% 目录深度
+% Chinese format for articles
 \setcounter{secnumdepth}{3}
 \def\@seccntformat#1{\csname the#1\endcsname\ }
 \renewcommand\thesection{\arabic{section}\space}
@@ -378,8 +350,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
    {-1em}%
    {\normalfont\normalsize\bfseries}}
 
-%% 摘要两个字设置为 4 号.
-%% 定义摘要环境
+% Abstract settings
 \renewenvironment{abstract}{%
 \if@twocolumn
     \section*{\abstractname}%
@@ -406,7 +377,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   {\noindent\zihao{-4}\heiti\mcm@cap@keywordsname：}~{\mcm@tokens@keywords}
 }
 
-% 定义附录，重定义计数器
+% Appendix settings
 \renewenvironment{appendices}{\par
 \@resets@pp
 \gdef\thesection{\@Alph\c@section}
@@ -437,7 +408,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \setcounter{subsection}{0}%
 }    
 
-% 重定义参考文献环境
+% Bibliography settings
 \renewenvironment{thebibliography}[1]
 {
   \addcontentsline{toc}{section}{\mcm@cap@refname}
@@ -461,6 +432,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \endlist
 } 
 
+% Parameterize
 \newcommand*\groupno[1]{%
   \renewcommand{\mcm@tokens@groupno}{#1}}
 \newcommand*\membera[1]{%
@@ -471,11 +443,6 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \renewcommand{\mcm@tokens@memberc}{#1}}
 \newcommand*\memberd[1]{%
   \renewcommand{\mcm@tokens@memberd}{#1}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% Initialization
-% 数学定理相关的常量
 \newcommand*{\mcm@cap@definition}{定义}
 \newcommand*{\mcm@cap@theorem}{定理}
 \newcommand*{\mcm@cap@lemma}{引理}
@@ -488,8 +455,6 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\mcm@cap@example}{例}
 \newcommand*{\mcm@cap@proof}{证明}
 \newcommand*{\mcm@cap@solution}{解}
-
-% 中文标题名称
 \newcommand*{\mcm@cap@contentsname}{\begin{center}目 \quad 录 \end{center}}
 \newcommand*{\mcm@cap@listfigurename}{插图清单}
 \newcommand*{\mcm@cap@listtablename}{附表清单}
@@ -499,13 +464,12 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\mcm@cap@tablename}{表}
 \newcommand*{\mcm@cap@appendixname}{附录}
 \newcommand*{\mcm@cap@abstractname}{摘 \quad 要}
-% 中文关键字
 \newcommand*{\mcm@cap@keywordsname}{关键词}
-% 引用
+
+% Other utility
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
 
-%设置目录格式
-% 节的目录格式
+% toc settings
 \titlecontents{section}[0pt]{\vspace{2mm}\bfseries\heiti}
 {\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
 % 小节的目录格式
