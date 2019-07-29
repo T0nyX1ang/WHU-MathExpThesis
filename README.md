@@ -56,7 +56,7 @@ Your appendices.
 ```bash
 sudo apt-get install ttf-mscorefonts-installer
 ```
-* The `openfonts` option can only be successfully executed when [SourceHanSerifCN](https://github.com/adobe-fonts/source-han-serif/blob/release/SubsetOTF/SourceHanSerifCN.zip) and [SourceHanSansCN](https://github.com/adobe-fonts/source-han-sans/blob/release/SubsetOTF/SourceHanSansCN.zip) are installed in your operation system.
+* The `openfonts` option can only be successfully executed when [SourceHanSerifCN](https://github.com/adobe-fonts/source-han-serif/blob/release/SubsetOTF/SourceHanSerifCN.zip) and [SourceHanSansCN](https://github.com/adobe-fonts/source-han-sans/blob/release/SubsetOTF/SourceHanSansCN.zip) are installed in your operating system.
 
 ## Different theorem environment name in the appendix:
 
